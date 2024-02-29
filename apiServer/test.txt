@@ -1,0 +1,60 @@
+{
+	"groups": {
+		"group:dev":        ["albert@cyberpartners.dk", "oliver@cyberpartners.dk"],
+		"group:seniordev":  ["oliver@cyberpartners.dk"],
+		"group:management": ["manager1@example.com", "manager2@example.com", "oliver@cyberpartners.dk"],
+		"group:marketing":  ["marketing1@example.com", "marketing2@example.com"],
+	},
+	"acls": [
+		{
+			"action": "accept",
+			"src":    ["autogroup:member"],
+			"dst":    ["autogroup:self:*"],
+		},
+		{
+			"action": "accept",
+			"src":    ["group:dev"],
+			"dst":    ["tag:dev:80,22"],
+		},
+		{
+			"action": "accept",
+			"src":    ["group:seniordev"],
+			"dst":    ["tag:dev:80,22", "tag:prod:80,22"],
+		},
+		{
+			"action": "accept",
+			"src":    ["group:management"],
+			"dst":    ["tag:dev:80", "tag:prod:8080", "tag:business:80", "tag:business:8080"],
+		},
+		{
+			"action": "accept",
+			"src":    ["group:marketing"],
+			"dst":    ["tag:business:1231"],
+		},
+		{
+			"action": "accept",
+			"src":    ["tag:dev"],
+			"dst":    ["tag:business:80"],
+		},
+		{
+			"action": "accept",
+			"src":    ["*"],
+			"dst":    ["*:*"],
+		},
+
+		{"action": "accept", "src": ["autogroup:admin"], "dst": ["*:*"]},
+		{
+			"action": "accept",
+			"src":    ["autogroup:member"],
+			"dst":    ["tag:monitoring:80,443"],
+		},
+	],
+	"tagOwners": {
+		"tag:monitoring": ["autogroup:admin"],
+		"tag:dev":        ["autogroup:admin"],
+		"tag:prod":       ["autogroup:admin"],
+		"tag:management": ["autogroup:admin"],
+		"tag:marketing":  ["autogroup:admin"],
+		"tag:business":   ["autogroup:admin"],
+	},
+}

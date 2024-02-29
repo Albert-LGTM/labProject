@@ -1,0 +1,31 @@
+http:
+ routers:
+  dashboard:
+   tls: 
+    certResolver: "myresolver"
+   entryPoints:
+   - "websecure"
+   rule: "Host(`headscale-node-2.tail507b4.ts.net`)"
+   service: api@internal
+   middlewares:
+     - traefik-dashboard-auth
+     - traefik-dashboard-redirect
+
+ middlewares:
+  traefik-dashboard-auth:
+   basicAuth:
+    users:
+    - "admin:$apr1$sadEhKwW$BNpyOakcbLp/P7JyP5ghs0" 
+
+  traefik-dashboard-redirect:
+     redirectRegex:
+       regex: ^https:\/\/([^\/]+)\/?$
+       replacement: https://${1}/dashboard/
+
+  my-acl:
+    plugin:
+      ACLAuthenticate:
+        labels:
+          headscale-node-1: "prod,dev"
+          website2: "marketing,test,IT"
+

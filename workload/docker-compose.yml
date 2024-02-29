@@ -1,0 +1,33 @@
+version: '3'
+services:
+  step-ca:
+    user: "0:0"
+    image: "smallstep/step-ca"
+    volumes:
+      - /root/catest:/home/step
+    ports: 
+      - "9000:9000"
+  crossbar:
+    image: "traefik/whoami"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-proxy"
+      - "traefik.http.routers.crossbar-secure.rule=Host(`www.cyberpartners.lan`)"
+      - "traefik.http.routers.crossbar-secure.tls=true"
+      - "traefik.http.routers.crossbar-secure.tls.certResolver=myresolver"
+      - "traefik.http.routers.crossbar-secure.entrypoints=websecure"
+      - "traefik.http.services.crossbar.loadbalancer.server.port=80"
+        #- "traefik.http.middlewares.my-acl.plugin.ACLAuthenticate.groups=seniordev,dev"
+        #- "traefik.http.middlewares.my-acl.plugin.ACLAuthenticate.tags=prod,dev"
+        #- "traefik.http.routers.crossbar-secure.middlewares=my-acl"
+    networks:
+      - "traefik-proxy"
+
+volumes:
+  step:
+
+networks: 
+  crossbar:
+  traefik-proxy:
+    external: true
+
