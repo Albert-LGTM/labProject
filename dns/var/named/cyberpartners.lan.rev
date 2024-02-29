@@ -1,0 +1,18 @@
+$TTL 86400
+@ IN SOA dns-primary.cyberpartners.lan. admin.cyberpartners.lan. (
+    2019061800 ;Serial
+    3600 ;Refresh
+    1800 ;Retry
+    604800 ;Expire
+    86400 ;Minimum TTL
+)
+;Name Server Information
+@ IN NS dns-primary.cyberpartners.lan.
+
+;Reverse lookup for Name Server
+136 IN PTR dns-primary.cyberpartners.lan.
+
+;PTR Record IP address to HostName
+13 IN PTR wiki.cyberpartners.lan.
+14 IN PTR www.cyberpartners.lan.
+15 IN PTR devel.cyberpartners.lan.
