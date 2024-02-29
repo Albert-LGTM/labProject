@@ -1,0 +1,21 @@
+$TTL 86400
+@ IN SOA dns-primary.cyberpartners.lan. admin.cyberpartners.lan. (
+    2019061800 ;Serial
+    3600 ;Refresh
+    1800 ;Retry
+    604800 ;Expire
+    86400 ;Minimum TTL
+)
+
+;Name Server Information
+@ IN NS dns-primary.cyberpartners.lan.
+
+;IP for Name Server
+dns-primary IN A 100.127.102.38
+
+;A Record for IP address to Hostname
+wiki    IN      CNAME       headscale-node-1.tail507b4.ts.net.
+www     IN      CNAME       headscale-node-2.tail507b4.ts.net.
+devel   IN      CNAME       fedora.tail507b4.ts.net.
+test	IN	A	    100.127.102.38
+test1   IN      CNAME	    test
