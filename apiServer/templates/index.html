@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>API Endpoints</title>
+</head>
+
+<body class="bg-gray-100 p-8">
+
+    <div class="max-w-2xl mx-auto">
+
+        <h1 class="text-3xl font-bold mb-4">API Endpoints</h1>
+
+        <div class="bg-white p-4 rounded shadow mb-4">
+            <h2 class="text-2xl font-semibold mb-2">GET /api/</h2>
+            <p class="text-gray-700">Lists all the available endpoints of the API.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow mb-4">
+            <h2 class="text-2xl font-semibold mb-2">GET /api/authorization/&lt;group&gt;/&lt;tag&gt;/&lt;ip&gt;</h2>
+            <p class="text-gray-700">Authorizes a user based on group, tag, and IP.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow mb-4">
+            <h2 class="text-2xl font-semibold mb-2">GET /api/getInfo?query_type=&lt;type&gt;&amp;query_value=&lt;value&gt;</h2>
+            <p class="text-gray-700">Gets information based on query type and value. Parameters: query_type, query_value.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow mb-4">
+            <h2 class="text-2xl font-semibold mb-2">GET /api/authenticated?hostname=&lt;hostname&gt;</h2>
+            <p class="text-gray-700">Checks if a device is authenticated based on hostname. Parameters: hostname.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow mb-4">
+            <h2 class="text-2xl font-semibold mb-2">GET /api/user?user=&lt;username&gt;</h2>
+            <p class="text-gray-700">Gets information about a user. Parameters: user.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded shadow mb-4">
+            <h2 class="text-2xl font-semibold mb-2">GET /api/ipaddress?ip=&lt;ip_address&gt;</h2>
+            <p class="text-gray-700">Checks if an IP address is present. Parameters: ip.</p>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

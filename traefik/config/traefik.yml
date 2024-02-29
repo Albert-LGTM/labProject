@@ -1,0 +1,48 @@
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+entryPoints:
+  web:
+    address: :80
+  websecure:
+    address: :443
+
+api:
+  dashboard: true
+
+ping: {}
+
+log:
+  filePath: /var/log/traefik/traefik.log
+  format: json
+  level: INFO
+
+accesslog:
+  filepath: /var/log/traefik/access.log
+  bufferingsize: 10000
+
+providers:
+  docker:
+    network: traefik-proxy
+    exposedByDefault: false
+
+  file:
+    directory: /etc/traefik/dynamic
+    watch: true
+
+experimental:
+  localPlugins:
+    ACLAuthenticate:
+      moduleName: github.local/test/ACLAuthenticate
+
+certificatesResolvers:
+  myresolver:
+    acme:
+      caServer: 'https://headscale-node-2.tail507b4.ts.net:9000/acme/acme/directory'
+      email: you@smallstep.com
+      storage: acme.json
+      certificatesDuration: 24
+      tlsChallenge: true
+
+

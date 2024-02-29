@@ -1,0 +1,12 @@
+displayName: ACL Plugin
+type: middleware
+iconPath: .assets/icon.png
+
+import: github.local/test/ACLAuthenticate
+
+summary: '[Demo] Add Request Header'
+
+testData:
+  Headers:
+    X-Demo: test
+    X-URL: '{{URL}}'

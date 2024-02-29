@@ -1,0 +1,29 @@
+version: '2.4'
+
+services:
+
+  traefik:
+    image: "traefik:v2.6"
+    container_name: "traefik"
+    ports:
+      - "80:80"
+      - "443:443"
+    healthcheck:
+      test: wget --quiet --tries=1 --spider http://localhost:8080/ping || exit 1
+      interval: 10s
+      timeout: 1s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - "./config:/etc/traefik"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+      - "./root.crt:/root.crt"
+      - "./plugins/aclplugin-0.2.2:/plugins-local/src/github.local/test/ACLAuthenticate"
+    command: sh -c "cat /root.crt >> /etc/ssl/certs/ca-certificates.crt && traefik"
+    networks: 
+      - "traefik-proxy"
+
+networks: 
+  traefik-proxy:
+    external: true
